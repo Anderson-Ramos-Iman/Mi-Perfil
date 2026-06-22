@@ -297,18 +297,23 @@ section {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 2rem;
 }
 
 .skill-card {
     background-color: rgba(31, 41, 55, 0.8);
-    padding: 2rem;
+    min-height: 180px;
+    padding: 2rem 1.5rem;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .skill-card:hover {
@@ -317,36 +322,14 @@ section {
     border-color: var(--primary-color);
 }
 
-.skill-card h3 {
-    color: var(--white);
-}
-
 .skill-icon {
     font-size: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.skill-bar {
-    width: 100%;
-    height: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    margin-top: 1rem;
-    overflow: hidden;
-}
-
-.skill-progress {
-    height: 100%;
-    background-color: var(--primary-color);
-    border-radius: 4px;
-    box-shadow: 0 0 10px var(--primary-color);
-}
-
-.skill-percent {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--primary-color);
+.skill-card h3 {
+    color: var(--white);
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -355,9 +338,13 @@ section {
     background-color: rgba(11, 14, 20, 0.7);
 }
 
+.projects .container {
+    max-width: 1500px;
+}
+
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 2rem;
 }
 
@@ -424,6 +411,7 @@ section {
     display: flex;
     align-items: center;
     gap: 5px;
+    width: fit-content;
 }
 
 .btn-link:hover {
@@ -700,6 +688,10 @@ footer {
     .info-list {
         grid-template-columns: 1fr;
     }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -717,5 +709,14 @@ footer {
 
     .contact-form-container {
         padding: 2rem;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-img img {
+        height: 220px;
     }
 }

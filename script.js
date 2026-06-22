@@ -2,12 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 0. Animated Background (Canvas) ---
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
-    
+
     let words = [
         'HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Python', 'Git', 'SQL',
         'Frontend', 'Backend', 'Fullstack', 'Cloud', 'API', 'Docker', 'Agile',
         'TypeScript', 'DevOps', 'Cybersecurity', 'AI', 'Machine Learning',
-        'Debug', 'Deploy', 'Algorithm', 'Database', 'JSON', 'Framework'
+        'Debug', 'Deploy', 'Algorithm', 'Database', 'JSON', 'Framework', 'Node.js', 
+        'Next.js', 'Nest.js', 'PostgreSQL', 'MongoDB'
     ];
 
     let particles = [];
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 if (nav.classList.contains('nav-active')) {
@@ -154,13 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('button');
             const originalText = submitBtn.innerText;
-            
+
             submitBtn.innerText = '¡Enviado!';
             submitBtn.style.backgroundColor = '#2ecc71';
             submitBtn.disabled = true;
-            
+
             contactForm.reset();
-            
+
             setTimeout(() => {
                 submitBtn.innerText = originalText;
                 submitBtn.style.backgroundColor = '';
@@ -176,30 +177,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-modal');
     const projectCards = document.querySelectorAll('.project-card');
 
+    function openModal(title, details) {
+        modalTitle.innerText = title;
+        modalContent.innerHTML = details;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
     projectCards.forEach(card => {
         const openBtn = card.querySelector('.open-modal');
         if (openBtn) {
             openBtn.addEventListener('click', () => {
                 const title = card.querySelector('h3').innerText;
                 const details = card.querySelector('.project-details').innerHTML;
-                
-                modalTitle.innerText = title;
-                modalContent.innerHTML = details;
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Prevent background scroll
+
+                openModal(title, details);
             });
         }
     });
 
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
+    closeBtn.addEventListener('click', closeModal);
 
     window.addEventListener('click', (event) => {
         if (event.target == modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
         }
     });
 });
