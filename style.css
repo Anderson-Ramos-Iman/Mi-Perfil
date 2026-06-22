@@ -362,15 +362,42 @@ section {
     border-color: var(--primary-color);
 }
 
+.project-img {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
 .project-img img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
     opacity: 0.8;
+    display: block;
+    transform: scale(1.01);
+    transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
 .project-card:hover .project-img img {
     opacity: 1;
+    transform: scale(1.05);
+}
+
+.project-card[data-project="world-cup-predictions"] .project-img img {
+    object-position: center 18%;
+}
+
+.project-card[data-project="classcraft"] .project-img img {
+    object-position: center 32%;
+}
+
+.project-card[data-project="bodega"] .project-img img {
+    object-position: center 20%;
+}
+
+.project-card[data-project="integrador"] .project-img img {
+    object-position: 18% 18%;
 }
 
 .project-info {
@@ -717,6 +744,6 @@ footer {
     }
 
     .project-img img {
-        height: 220px;
+        height: 100%;
     }
 }
